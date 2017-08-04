@@ -1,0 +1,22 @@
+{
+  "name": "chatcat_begin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^1.3.2",
+    "ejs": "2.3.4",
+    "express": "^4.15.3",
+    "express-session": "^1.15.4",
+    "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-twitter": "^1.0.4",
+    "socket.io": "^2.0.3"
+  }
+}
