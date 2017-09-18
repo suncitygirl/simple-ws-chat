@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>ChatCat - Topic Goes Here</title>
+	<title>ChatCat - <%= room %></title>
 	<link rel="stylesheet" href="/styles/chatroomStyles.css">
 	<script src="/scripts/jquery-2.1.4.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
@@ -12,6 +12,14 @@
 			const roomID = '<%= roomID %>';
 			const user = '<%= user.fullName %>';
 			const userPic = '<%= user.profilePic %>';
+
+			socket.on('connect', () => {
+				socket.emit('join', {
+					roomID,
+					user,
+					userPic
+				})
+			})
 		});
 	</script>
 </head>

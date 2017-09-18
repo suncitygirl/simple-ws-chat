@@ -87,6 +87,28 @@ const findRoomById = (allrooms, roomID) =>
 const getRandomHex = () =>
     crypto.randomBytes(24).toString('hex');
 
+const addUserToRoom = (allrooms, data, socket) => {
+    const room = findRoomById(allrooms, data.roomID);
+    if (room) { 
+        const userID = socket.request.session.passport.user;
+        const checkUser = room.users.findIndex(item => item.userID === userID);
+        if (checkUser > -1) {
+            room.users.splice(checkUser, 1);
+        }
+
+        room.users.push({
+            socketID: socket.id,
+            userID,
+            user: data.user,
+            userPic: data.userPic,
+        });
+
+        socket.join(data.roomID);
+
+        return room;
+    }
+}
+
 module.exports = {
     route,
     findOne,
@@ -95,5 +117,6 @@ module.exports = {
     isAuthenticated,
     findRoomByName,
     findRoomById,
-    getRandomHex
+    getRandomHex,
+    addUserToRoom
 }
